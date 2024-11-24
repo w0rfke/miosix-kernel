@@ -177,6 +177,8 @@ void Mutex::PKlockToDepth(PauseKernelLock& dLock, unsigned int depth)
 
 bool Mutex::PKtryLock(PauseKernelLock& dLock)
 {
+    (void) dLock;
+
     Thread *p=Thread::PKgetCurrentThread();
     if(owner==nullptr)
     {
@@ -199,6 +201,8 @@ bool Mutex::PKtryLock(PauseKernelLock& dLock)
 
 bool Mutex::PKunlock(PauseKernelLock& dLock)
 {
+    (void) dLock;
+
     Thread *p=Thread::PKgetCurrentThread();
     if(owner!=p) return false;
 
@@ -276,6 +280,8 @@ bool Mutex::PKunlock(PauseKernelLock& dLock)
 
 unsigned int Mutex::PKunlockAllDepthLevels(PauseKernelLock& dLock)
 {
+    (void) dLock;
+
     Thread *p=Thread::PKgetCurrentThread();
     if(owner!=p) return 0;
 
