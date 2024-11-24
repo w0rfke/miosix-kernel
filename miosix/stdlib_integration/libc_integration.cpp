@@ -1066,8 +1066,6 @@ int dup(int fd)
 
     #else //WITH_FILESYSTEM
     (void) fd;
-    (void) dirp;
-    (void) count;
     miosix::getReent()->_errno=ENOENT;
     return -1;
     #endif //WITH_FILESYSTEM
@@ -1394,10 +1392,12 @@ int posix_spawn(pid_t *pid, const char *path,
     #endif //__NO_EXCEPTIONS
 
     #else //WITH_PROCESSES
-    (void) ptr;
+    (void) pid;
     (void) path;
+    (void) a;
+    (void) s;
     (void) argv;
-    (void) env;
+    (void) envp;
 
     return 1;
     #endif //WITH_PROCESSES
