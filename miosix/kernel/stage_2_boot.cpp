@@ -69,8 +69,13 @@ static void callConstructors(unsigned long *start, unsigned long *end)
     }
 }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
+
 void *mainLoader(void *argv)
 {
+    (void) argv;
+
     //If reaches here kernel is started, print Ok
     bootlog("Ok\n%s\n",getMiosixVersion());
 
@@ -110,6 +115,8 @@ void *mainLoader(void *argv)
     shutdown();
     return 0;
 }
+
+#pragma GCC diagnostic pop
 
 } //namespace miosix
 

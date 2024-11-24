@@ -28,6 +28,8 @@
 #ifndef LOGGING_H
 #define	LOGGING_H
 
+#pragma GCC system_header
+
 #include "config/miosix_settings.h"
 #include "filesystem/console/console_device.h"
 #include <cstdio>

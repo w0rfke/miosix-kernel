@@ -92,6 +92,8 @@ static ProcessBase *kernel=nullptr;
  */
 void *idleThread(void *argv)
 {
+    (void) argv;
+
     for(;;)
     {
         if(exist_deleted)
@@ -323,6 +325,8 @@ Thread *Thread::create(void *(*startfunc)(void *), unsigned int stacksize,
     return thread;
 }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-function-type"
 Thread *Thread::create(void (*startfunc)(void *), unsigned int stacksize,
 					Priority priority, void *argv, unsigned short options)
 {
@@ -330,6 +334,7 @@ Thread *Thread::create(void (*startfunc)(void *), unsigned int stacksize,
     return Thread::create(reinterpret_cast<void *(*)(void*)>(startfunc),
             stacksize,priority,argv,options);
 }
+#pragma GCC diagnostic pop
 
 void Thread::yield()
 {
